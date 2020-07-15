@@ -33,7 +33,7 @@
 #
 # [*git_source*]
 #   (string) Location of upstream powerdns_admin GIT repository
-#   Defaults to 'https://github.com/voxpupuli/powerdns_admin' ($::powerdns_admin::params::git_source)
+#   Defaults to 'https://github.com/ngoduykhanh/PowerDNS-Admin.git' ($::powerdns_admin::params::git_source)
 #
 # [*manage_git*]
 #   (bool) If true, require the git package. If false do nothing.
