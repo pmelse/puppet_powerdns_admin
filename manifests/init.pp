@@ -86,4 +86,31 @@ class powerdns_admin (
       require    => Group[$group],
     }
   }
+
+  python::virtualenv { "${::powerdns_admin::basedir}/virtenv-powerdns_admin":
+    ensure       => present,
+    version      => $::powerdns_admin::virtualenv_version,
+    requirements => "${::powerdns_admin::basedir}/powerdns_admin/requirements.txt",
+    systempkgs   => true,
+    distribute   => false,
+    owner        => $::powerdns_admin::user,
+    cwd          => "${::powerdns_admin::basedir}/powerdns_admin",
+    require      => Vcsrepo["${::powerdns_admin::basedir}/powerdns_admin"],
+    proxy        => $::powerdns_admin::python_proxy,
+    index        => $::powerdns_admin::python_index,
+  }
+
+  if $manage_git and !defined(Package['git']) {
+    package {'git':
+      ensure => installed,
+    }
+  }
+
+  if $manage_virtualenv and !defined(Package[$powerdns_admin::params::virtualenv]) {
+    class { 'python':
+      virtualenv => 'present',
+      dev        => 'present',
+      use_epel   => $python_use_epel,
+    }
+  }
 }
