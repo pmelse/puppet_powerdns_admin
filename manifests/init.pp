@@ -119,7 +119,7 @@ class powerdns_admin (
     mode   => '0755',
   }
 
-  vcsrepo { "${basedir}/puppetboard":
+  vcsrepo { "${basedir}/powerdns_admin":
     ensure   => present,
     provider => git,
     owner    => $user,
