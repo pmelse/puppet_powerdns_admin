@@ -29,3 +29,4 @@ class powerdns_admin::params {
   $git_source = 'https://github.com/pmelse/powerdns_admin'
   $virtualenv = 'python-virtualenv'
   $virtualenv_version = 'system'
+}
