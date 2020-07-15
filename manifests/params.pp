@@ -19,7 +19,7 @@ class powerdns_admin::params {
       }
     }
     default: {
-      nofify('Operating System Not Supported')
+      notice('Operating System Not Supported')
     }
   }
 
