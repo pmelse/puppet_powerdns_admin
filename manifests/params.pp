@@ -28,5 +28,5 @@ class powerdns_admin::params {
   $basedir = '/srv/powerdnsadmin'
   $git_source = 'https://github.com/ngoduykhanh/PowerDNS-Admin.git'
   $virtualenv = 'python-virtualenv'
-  $virtualenv_version = 'system'
+  $virtualenv_version = '3.8.4'
 }
