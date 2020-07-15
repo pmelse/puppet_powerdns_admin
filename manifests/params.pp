@@ -25,7 +25,7 @@ class powerdns_admin::params {
 
   $user  = 'powerdns_admin'
   $group = 'powerdns_admin'
-  $basedir = '/srv/powerdns_admin'
+  $basedir = '/srv/powerdnsadmin'
   $git_source = 'https://github.com/pmelse/powerdns_admin'
   $virtualenv = 'python-virtualenv'
   $virtualenv_version = 'system'
