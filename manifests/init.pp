@@ -111,4 +111,24 @@ class powerdns_admin (
       use_epel   => $python_use_epel,
     }
   }
+
+  file { $basedir:
+    ensure => 'directory',
+    owner  => $user,
+    group  => $group,
+    mode   => '0755',
+  }
+
+  vcsrepo { "${basedir}/puppetboard":
+    ensure   => present,
+    provider => git,
+    owner    => $user,
+    source   => $git_source,
+    revision => $revision,
+    require  => [
+      User[$user],
+      Group[$group],
+    ],
+  }
+
 }
