@@ -100,10 +100,8 @@ class powerdns_admin (
     index        => $::powerdns_admin::python_index,
   }
 
-  if $manage_git and !defined(Package['git']) {
-    package {'git':
-      ensure => installed,
-    }
+  if $manage_git {
+    ensure_packages(['git'], { ensure => 'present' })
   }
 
   if $manage_virtualenv and !defined(Package[$powerdns_admin::params::virtualenv]) {
