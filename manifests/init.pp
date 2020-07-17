@@ -55,6 +55,10 @@
 #   (bool) If true, manage (create) this group. If false do nothing.
 #   Defaults to true
 #
+# [*revision*]
+#   (string) Commit, tag, or branch from Puppetboard's Git repo to be used
+#   Defaults to undef, meaning latest commit will be used ($::puppetboard::params::revision)
+#
 class powerdns_admin (
   String $user   = $powerdns_admin::params::user,
   String $group  = $powerdns_admin::params::group,
@@ -64,6 +68,7 @@ class powerdns_admin (
   Boolean $manage_group          = true,
   Boolean $manage_git            = false,
   Boolean $manage_virtualenv     = false,
+  Optional[String] $revision     = undef,
   String[1]  $virtualenv_version = $powerdns_admin::params::virtualenv_version,
   ) inherits powerdns_admin::params {
 
