@@ -82,7 +82,7 @@
 class powerdns_admin::apache::vhost (
   String $vhost_name,
   String $docroot                           = '/srv/powerdnsadmin',
-  Struct $wsgi_aliases                        = {'/' => '/srv/powerdns_admin/powerdns_admin/wsgi.py'},
+  Struct $wsgi_aliases                      = {'/' => '/srv/powerdns_admin/powerdns_admin/wsgi.py'},
   String $wsgi_daemon_process               = 'powerdnsadmin',
   String $wsgi_process_group                = 'powerdnsadmin',
   Integer $port                             = 5000,
@@ -94,12 +94,12 @@ class powerdns_admin::apache::vhost (
   String $group                             = $powerdns_admin::params::group,
   Stdlib::AbsolutePath $basedir             = $powerdns_admin::params::basedir,
   Optional[String] $override                          = $powerdns_admin::params::apache_override,
-  Boolean $enable_ldap_auth                 = $powerdns_admin::params::enable_ldap_auth,
+  Boolean $enable_ldap_auth                 = false,
   Optional[String] $ldap_bind_dn            = undef,
   Optional[String] $ldap_bind_password      = undef,
   Optional[String] $ldap_url                = undef,
   Optional[String] $ldap_bind_authoritative = undef,
-  Boolean $ldap_require_group               = undef,
+  Boolean $ldap_require_group               = false,
   Optional[String] $ldap_require_group_dn   = undef,
   Hash $custom_apache_parameters            = {},
 ) inherits ::powerdns_admin::params {
