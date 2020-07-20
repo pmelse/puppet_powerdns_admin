@@ -6,7 +6,7 @@ class powerdns_admin::mysql::mysql (
   String $mysql_powerdnsadmin_user = undef,
   String $mysql_powerdnsadmin_database = undef,
   String $mysql_powerdnsadmin_host = 'localhost',
-  String[1] $mysql_powerdnsadmin_grant = ['ALL'],
+  Tuple $mysql_powerdnsadmin_grant = ['ALL'],
   ) inherits powerdns_admin::params {
   mysql::db { $mysql_powerdnsadmin_database:
   user     => $mysql_powerdnsadmin_user,
