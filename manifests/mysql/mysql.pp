@@ -2,30 +2,16 @@
 #
 #
 class powerdns_admin::mysql::mysql (
-  String $mysql_root_password = undef,
+  String $mysql_powerdnsadmin_password = undef,
+  String $mysql_powerdnsadmin_user = undef,
+  String $mysql_powerdnsadmin_database = undef,
+  String $mysql_powerdnsadmin_host = 'localhost',
+  String[1] $mysql_powerdnsadmin_grant = ['ALL'],
   ) inherits powerdns_admin::params {
-  file { '/srv/mysql':
-    ensure => 'directory',
-    owner  => 'mysql',
-    group  => 'mysql',
-    mode   => '0771',
-  }
-  $override_options = {
-    'mysqld' => {
-      'bind-address'    => "${facts}['network']",
-      'datadir'         => '/srv/mysql',
-      'log_bin'         => '/srv/mysql.bin.log',
-      'max_binlog_size' => '64424509440',
-    }
-  }
-
-  # $mysql_config = lookup( { 'name' => 'mysql' } )
-
-
-  class { '::mysql::server':
-    root_password           => $powerdns_admin::mysql_root_password,
-    remove_default_accounts => true,
-    override_options        => $override_options
-  }
-
+  mysql::db { $mysql_powerdnsadmin_database:
+  user     => $mysql_powerdnsadmin_user,
+  password => $mysql_powerdnsadmin_password,
+  host     => $mysql_powerdnsadmin_host,
+  grant    => $mysql_powerdnsadmin_grant,
+}
 }
