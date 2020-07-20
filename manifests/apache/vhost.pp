@@ -160,5 +160,5 @@ class powerdns_admin::apache::vhost (
     notify                      => Service[$powerdns_admin::params::apache_service],
     *                           => $custom_apache_parameters,
   }
-  File["${basedir}/powerdns_admin/settings.py"] ~> Service['httpd']
+  # File["${basedir}/powerdns_admin/settings.py"] ~> Service['httpd']
 }
