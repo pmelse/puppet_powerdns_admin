@@ -11,9 +11,9 @@
 #   (string) The vhost ServerName.
 #   No default.
 #
-# [*wsgi_alias*]
+# [*wsgi_aliases*]
 #   (string) WSGI script alias source
-#   Default: '/'
+#   Default: { '/' => '/srv/powerdns_admin/powerdns_admin/wsgi.py'}
 #
 # [*port*]
 #   (int) Port for the vhost to listen on.
@@ -81,7 +81,10 @@
 #   No default
 class powerdns_admin::apache::vhost (
   String $vhost_name,
-  String $wsgi_alias                        = '/',
+  String $docroot                           = '/srv/powerdnsadmin',
+  Dict $wsgi_aliases                        = {'/' => '/srv/powerdns_admin/powerdns_admin/wsgi.py'},
+  String $wsgi_daemon_process               = 'powerdnsadmin',
+  String $wsgi_process_group                = 'powerdnsadmin',
   Integer $port                             = 5000,
   Boolean $ssl                              = false,
   Optional[Stdlib::AbsolutePath] $ssl_cert  = undef,
@@ -90,7 +93,7 @@ class powerdns_admin::apache::vhost (
   String $user                              = $powerdns_admin::params::user,
   String $group                             = $powerdns_admin::params::group,
   Stdlib::AbsolutePath $basedir             = $powerdns_admin::params::basedir,
-  String $override                          = $powerdns_admin::params::apache_override,
+  Optional[String] $override                          = $powerdns_admin::params::apache_override,
   Boolean $enable_ldap_auth                 = $powerdns_admin::params::enable_ldap_auth,
   Optional[String] $ldap_bind_dn            = undef,
   Optional[String] $ldap_bind_password      = undef,
@@ -104,7 +107,7 @@ class powerdns_admin::apache::vhost (
   $docroot = "${basedir}/powerdns_admin"
 
   $wsgi_script_aliases = {
-    "${wsgi_alias}" => "${docroot}/wsgi.py",
+    "${wsgi_aliases}" => "${docroot}/wsgi.py",
   }
 
   $wsgi_daemon_process_options = {
