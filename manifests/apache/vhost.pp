@@ -106,9 +106,9 @@ class powerdns_admin::apache::vhost (
 
 
 
-  $wsgi_script_aliases = {
-    "${::powerdnsadmin::apache::vhost::wsgi_aliases}" => "${docroot}/wsgi.py",
-  }
+# $wsgi_script_aliases = {
+#   "${::powerdnsadmin::apache::vhost::wsgi_aliases}" => "${docroot}/wsgi.py",
+# }
 
   $wsgi_daemon_process_options = {
     threads => $threads,
