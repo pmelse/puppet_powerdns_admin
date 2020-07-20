@@ -82,7 +82,7 @@
 class powerdns_admin::apache::vhost (
   String $vhost_name,
   String $docroot                           = '/srv/powerdnsadmin',
-  Dict $wsgi_aliases                        = {'/' => '/srv/powerdns_admin/powerdns_admin/wsgi.py'},
+  Array $wsgi_aliases                        = {'/' => '/srv/powerdns_admin/powerdns_admin/wsgi.py'},
   String $wsgi_daemon_process               = 'powerdnsadmin',
   String $wsgi_process_group                = 'powerdnsadmin',
   Integer $port                             = 5000,
