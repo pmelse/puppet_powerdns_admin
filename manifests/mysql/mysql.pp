@@ -3,7 +3,6 @@
 #
 class powerdns_admin::mysql::mysql (
   String $mysql_root_password = undef,
-  $override_options           = {},
   ) inherits powerdns_admin::params {
   file { '/srv/mysql':
     ensure => 'directory',
