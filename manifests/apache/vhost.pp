@@ -79,7 +79,7 @@
 # [*$ldap_require_group_dn]
 #   (string) LDAP group DN for LDAP group
 #   No default
-class powerdns_admin::apache::vhost (
+class powerdns_admin::apache::apache::vhost (
   String $vhost_name,
   String $wsgi_alias                        = '/',
   Integer $port                             = 5000,
