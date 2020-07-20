@@ -116,16 +116,16 @@ class powerdns_admin::apache::vhost (
     user    => $user,
   }
 
-  file { "${docroot}/wsgi.py":
-    ensure  => present,
-    content => template('powerdns_admin/wsgi.py.erb'),
-    owner   => $user,
-    group   => $group,
-    require => [
-      User[$user],
-      Vcsrepo[$docroot],
-    ],
-  }
+ # file { "${docroot}/wsgi.py":
+ #   ensure  => present,
+ #   content => template('powerdns_admin/wsgi.py.erb'),
+ #   owner   => $user,
+ #   group   => $group,
+ #   require => [
+ #     User[$user],
+ #     Vcsrepo[$docroot],
+ #   ],
+ # }
 
   if $enable_ldap_auth {
     $ldap_additional_includes = [ "${powerdns_admin::params::apache_confd}/powerdns_admin-ldap.part" ]
