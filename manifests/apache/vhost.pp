@@ -81,8 +81,8 @@
 #   No default
 class powerdns_admin::apache::vhost (
   String $vhost_name,
-  String $docroot                           = '/srv/powerdnsadmin',
-  Hash $wsgi_script_aliases                      = {'/' => '/srv/powerdns_admin/powerdns_admin/wsgi.py'},
+  String $docroot                           = $basedir/powerdns_admin,
+  Hash $wsgi_script_aliases                 = {'/' => '/srv/powerdns_admin/powerdns_admin/wsgi.py'},
   String $wsgi_daemon_process               = 'powerdnsadmin',
   String $wsgi_process_group                = 'powerdnsadmin',
   Integer $port                             = 5000,
@@ -104,10 +104,10 @@ class powerdns_admin::apache::vhost (
   Hash $custom_apache_parameters            = {},
 ) inherits ::powerdns_admin::params {
 
-  $docroot = "${basedir}/powerdns_admin"
+
 
   $wsgi_script_aliases = {
-    "${wsgi_aliases}" => "${docroot}/wsgi.py",
+    "${::powerdnsadmin::apache::vhost::wsgi_aliases}" => "${docroot}/wsgi.py",
   }
 
   $wsgi_daemon_process_options = {
