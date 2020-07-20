@@ -156,7 +156,7 @@ class powerdns_admin::apache::vhost (
     wsgi_script_aliases         => $wsgi_script_aliases,
     wsgi_daemon_process_options => $wsgi_daemon_process_options,
     override                    => $override,
-    require                     => [ File["${docroot}/wsgi.py"], $ldap_require ],
+    # require                     => [ File["${docroot}/wsgi.py"], $ldap_require ],
     notify                      => Service[$powerdns_admin::params::apache_service],
     *                           => $custom_apache_parameters,
   }
